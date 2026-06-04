@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高通 Computex 2026 演講完整解析</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+    --surface2: #eef1f8;
+    --border: #dde2f0;
+    --accent: #2f5de8;
+    --accent2: #0099a8;
+    --accent3: #e08b00;
+    --text: #1a1e30;
+    --muted: #6b7399;
+    --easy: #16a34a;
+    --mid: #c27a00;
+    --hard: #dc2626;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans TC', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; min-height: 100vh; }
+
+  /* HERO */
+  .hero { position: relative; overflow: hidden; padding: 80px 24px 60px; text-align: center; background: radial-gradient(ellipse 80% 60% at 50% 0%, #d5e0ff 0%, transparent 70%); }
+  .hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg,transparent 0px,transparent 39px,#00000008 39px,#00000008 40px); pointer-events: none; }
+  .hero-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent2); border: 1px solid var(--accent2); padding: 4px 14px; border-radius: 2px; margin-bottom: 20px; text-transform: uppercase; }
+  .hero h1 { font-size: clamp(26px, 5vw, 52px); font-weight: 900; line-height: 1.15; letter-spacing: -1px; margin-bottom: 12px; }
+  .hero h1 span { color: var(--accent); }
+  .hero-sub { color: var(--muted); font-size: 15px; max-width: 560px; margin: 0 auto 36px; }
+  .hero-stats { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .hero-stat { text-align: center; }
+  .hero-stat .num { font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--accent2); display: block; }
+  .hero-stat .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* KEYNOTE INFO */
+  .keynote-info { max-width: 840px; margin: 0 auto 48px; padding: 0 24px; }
+  .info-card { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 24px 28px; }
+  .info-card h2 { font-size: 13px; font-family: 'Space Mono', monospace; letter-spacing: 2px; color: var(--accent2); text-transform: uppercase; margin-bottom: 14px; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .info-item label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 3px; }
+  .info-item span { font-size: 14px; color: var(--text); font-weight: 500; }
+
+  /* TABS */
+  .tabs-wrap { position: sticky; top: 0; z-index: 100; background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; }
+  .tabs { max-width: 900px; margin: 0 auto; display: flex; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { flex-shrink: 0; padding: 14px 22px; background: none; border: none; border-bottom: 2px solid transparent; color: var(--muted); font-family: 'Noto Sans TC', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+  /* MAIN */
+  .main { max-width: 900px; margin: 0 auto; padding: 36px 24px 80px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* TIER */
+  .tier-section { margin-bottom: 40px; }
+  .tier-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+  .tier-badge { font-family: 'Space Mono', monospace; font-size: 10px; padding: 4px 10px; border-radius: 3px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+  .badge-easy { background: #22c55e18; color: var(--easy); border: 1px solid #22c55e40; }
+  .badge-mid  { background: #f59e0b18; color: var(--mid);  border: 1px solid #f59e0b40; }
+  .badge-hard { background: #ef444418; color: var(--hard); border: 1px solid #ef444440; }
+  .tier-title { font-size: 17px; font-weight: 700; }
+
+  /* CONCEPT CARD */
+  .concept-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; transition: border-color 0.2s; opacity: 0; transform: translateY(12px); animation: fadeUp 0.4s forwards; }
+  .concept-card:hover { border-color: #b0bce0; }
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  .concept-card:nth-child(1){animation-delay:.05s} .concept-card:nth-child(2){animation-delay:.10s}
+  .concept-card:nth-child(3){animation-delay:.15s} .concept-card:nth-child(4){animation-delay:.20s}
+  .concept-card:nth-child(5){animation-delay:.25s} .concept-card:nth-child(6){animation-delay:.30s}
+  .concept-card:nth-child(7){animation-delay:.35s} .concept-card:nth-child(8){animation-delay:.40s}
+  .concept-card:nth-child(9){animation-delay:.45s}
+  .card-header { padding: 18px 22px; cursor: pointer; display: flex; align-items: flex-start; gap: 14px; user-select: none; }
+  .card-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .card-title-wrap { flex: 1; }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; }
+  .en-inline { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent2); font-weight: 400; margin-left: 6px; vertical-align: middle; }
+  .card-subtitle { font-size: 12px; color: var(--muted); }
+  .card-chevron { color: var(--muted); font-size: 12px; margin-left: auto; flex-shrink: 0; transition: transform 0.25s; margin-top: 4px; }
+  .concept-card.open .card-chevron { transform: rotate(180deg); }
+  .card-body { display: none; padding: 0 22px 22px; border-top: 1px solid var(--border); }
+  .concept-card.open .card-body { display: block; }
+  .card-section-title { font-size: 11px; font-family: 'Space Mono', monospace; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; margin: 18px 0 8px; }
+  .card-body p { font-size: 14px; color: #3a4060; line-height: 1.75; margin-bottom: 8px; }
+
+  /* EXAMPLE BOX */
+  .example-box { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 6px; padding: 14px 16px; margin-top: 10px; }
+  .example-box .ex-label { font-size: 10px; font-family: 'Space Mono', monospace; color: var(--accent2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .example-box p { font-size: 13px; color: #4a5580; margin-bottom: 0; }
+
+  /* KEYWORD LIST — bilingual pill */
+  .keyword-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .keyword { display: inline-flex; flex-direction: column; padding: 6px 12px; background: var(--surface2); border: 1px solid var(--border); border-radius: 5px; }
+  .keyword .kw-en { font-size: 11px; font-family: 'Space Mono', monospace; color: var(--accent2); line-height: 1.4; }
+  .keyword .kw-zh { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* MATTERS BOX */
+  .matters-box { background: #2f5de810; border: 1px solid #2f5de830; border-radius: 6px; padding: 12px 16px; margin-top: 10px; }
+  .matters-box .m-label { font-size: 10px; font-family: 'Space Mono', monospace; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .matters-box p { font-size: 13px; color: #3a4a7a; margin: 0; }
+
+  /* OVERVIEW */
+  .overview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .ov-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
+  .ov-card .ov-icon { font-size: 28px; margin-bottom: 10px; }
+  .ov-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .ov-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent); }
+  .tl-item { position: relative; margin-bottom: 22px; }
+  .tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .tl-item h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .tl-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  footer { text-align: center; padding: 32px; border-top: 1px solid var(--border); color: var(--muted); font-size: 12px; font-family: 'Space Mono', monospace; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 50px 16px 40px; }
+    .hero-stats { gap: 20px; }
+    .main { padding: 24px 16px 60px; }
+    .card-header { padding: 14px 16px; }
+    .card-body { padding: 0 16px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Computex 2026 · June 1 · Taipei</div>
+  <h1>高通 Computex 2026<br><span>演講完整知識解析</span></h1>
+  <p class="hero-sub">CEO Cristiano Amon 主題演講「代理人之年 Year of the Agents」— 從白話入門到資工進階，一篇全讀懂</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="num">3</span><span class="label">知識層次</span></div>
+    <div class="hero-stat"><span class="num">27</span><span class="label">核心觀念</span></div>
+    <div class="hero-stat"><span class="num">9</span><span class="label">難度分級</span></div>
+    <div class="hero-stat"><span class="num">40x</span><span class="label">預測 Token 成長</span></div>
+  </div>
+</div>
+
+<!-- KEYNOTE INFO -->
+<div class="keynote-info">
+  <div class="info-card">
+    <h2>演講基本資料</h2>
+    <div class="info-grid">
+      <div class="info-item"><label>主講人</label><span>Cristiano Amon（高通 Qualcomm CEO）</span></div>
+      <div class="info-item"><label>活動</label><span>Computex 2026 開幕主題演講 Opening Keynote</span></div>
+      <div class="info-item"><label>地點</label><span>台北南港展覽館二館 7F</span></div>
+      <div class="info-item"><label>主題</label><span>「代理人之年」Year of the Agents</span></div>
+      <div class="info-item"><label>核心訊息</label><span>AI 從被動回答 → 主動完成任務</span></div>
+      <div class="info-item"><label>重大宣布</label><span>Dragonfly 資料中心品牌 Data Center Brand 正式發表</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="overview"><span class="dot" style="background:#3d6ef5"></span>演講總覽</button>
+    <button class="tab-btn" data-tab="basic"><span class="dot" style="background:#3d6ef5"></span>📱 一般人必知</button>
+    <button class="tab-btn" data-tab="advanced"><span class="dot" style="background:#a855f7"></span>🔥 進階必懂</button>
+    <button class="tab-btn" data-tab="cs"><span class="dot" style="background:#00e5c4"></span>💻 資工學生專區</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<!-- ══════════════════════════════════════════
+     OVERVIEW TAB
+══════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="tier-header"><div class="tier-title">高通這場演講在講什麼？</div></div>
+  <div class="overview-grid">
+    <div class="ov-card"><div class="ov-icon">🤖</div><h3>AI 代理人 AI Agent 時代來臨</h3><p>AI 不再只是回答你的問題，而是主動幫你完成複雜任務，就像有個不睡覺的數位助理在背後幫你做事。</p></div>
+    <div class="ov-card"><div class="ov-icon">📱</div><h3>AI 要在你裝置裡跑 On-device AI</h3><p>高通想讓 AI 直接在手機、電腦、車子上運算，不用每次都傳到雲端，更快、更省錢、更隱私。</p></div>
+    <div class="ov-card"><div class="ov-icon">🏭</div><h3>進軍資料中心 Data Center</h3><p>高通宣布全新品牌「Dragonfly」，要跟 NVIDIA（輝達）、AMD 搶資料中心 AI 晶片市場。</p></div>
+    <div class="ov-card"><div class="ov-icon">🤝</div><h3>高度感謝台灣供應鏈 Supply Chain</h3><p>Amon 特別點名台積電（TSMC）為「非常重要的夥伴」，背後顯示超過 60 家台灣合作廠商。</p></div>
+    <div class="ov-card"><div class="ov-icon">🦾</div><h3>機器人 Robotics 也要 AI 化</h3><p>推出 Dragonwing IQ10 機器人開發平台，目標讓人形機器人 Humanoid Robot 開發更快更容易，預計今年九月出貨。</p></div>
+    <div class="ov-card"><div class="ov-icon">💸</div><h3>入門 AI 電腦 Budget AI PC 也要有</h3><p>Snapdragon C 系列專為入門級筆電設計，讓 299 美元的筆電也能跑 AI 功能。</p></div>
+  </div>
+
+  <div class="tier-header" style="margin-top:32px;"><div class="tier-title">演講重要時間軸 Timeline</div></div>
+  <div class="timeline">
+    <div class="tl-item"><h4>🎬 開場：影片展示 AI 助理日常</h4><p>影片描繪 AI 代理人（AI Agent）在運動、購物、工作上協助使用者，強調「從不缺席的運算 Computing that never misses a moment」願景。</p></div>
+    <div class="tl-item"><h4>🌏 致謝台灣供應鏈 Taiwan Supply Chain</h4><p>點名台積電（TSMC）、聯電（UMC）、日月光（ASE）等超過 60 家台灣夥伴，共 21 家半導體（Semiconductor）公司。</p></div>
+    <div class="tl-item"><h4>🤖 宣布「代理人之年」Year of the Agents 主題</h4><p>Amon 宣告 2026 是 Year of the Agents，AI 從「回答問題的工具 Tool」進化為「主動執行任務的數位員工 Digital Worker」。</p></div>
+    <div class="tl-item"><h4>📱 Snapdragon X2 Elite 與 C 系列發表</h4><p>旗艦 PC 晶片 X2 Elite 與入門 Snapdragon C 系列同步展示，合作夥伴 Acer（宏碁）、HP（惠普）、Lenovo（聯想）加入。</p></div>
+    <div class="tl-item"><h4>🦾 機器人平台 Dragonwing IQ10 亮相</h4><p>700 TOPS（每秒兆次運算）算力的機器人參考設計（Reference Design），整合 18 顆 Oryon CPU 核心，目標人形機器人（Humanoid Robot）開發加速。</p></div>
+    <div class="tl-item"><h4>🏗️ Dragonfly 資料中心品牌 Data Center Brand 發表</h4><p>高通正式進軍資料中心（Data Center）市場，Dragonfly 將涵蓋伺服器 CPU、AI 加速器（AI Accelerator）與客製晶片，更多細節留待 6/24 投資者日（Investor Day）揭曉。</p></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     BASIC TAB
+══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-basic">
+  <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">📌 這裡的觀念就算完全不懂科技也能看懂。每個觀念都有生活化的比喻幫你理解。</p>
+
+  <!-- EASY -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-easy">簡單</span><div class="tier-title">這些名詞每個人都該知道</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🤖</div>
+        <div class="card-title-wrap">
+          <div class="card-title">AI 代理人 <span class="en-inline">AI Agent</span> 是什麼？</div>
+          <div class="card-subtitle">高通整場演講的核心主角</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>以前的 AI 就像一個等你問問題才說話的客服人員——你問「怎麼訂披薩」，牠告訴你步驟，但不會幫你去做。</p>
+        <p><strong>AI 代理人（AI Agent）</strong>就不一樣了，牠更像一個有手有腳的助理：你說「幫我安排下週的旅遊」，牠會自己查機票、訂飯店、規劃行程，最後把結果呈現給你。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>想像你有個超厲害的秘書，你說「幫我準備明天的簡報」，他會自己去找資料、整理重點、排版好，你只需要確認就好。AI 代理人就是這個「數位秘書 Digital Assistant」。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">AI Agent</span><span class="kw-zh">AI 代理人</span></span>
+          <span class="keyword"><span class="kw-en">Agentic AI</span><span class="kw-zh">代理式人工智慧</span></span>
+          <span class="keyword"><span class="kw-en">Autonomous Task</span><span class="kw-zh">自主任務執行</span></span>
+          <span class="keyword"><span class="kw-en">Year of the Agents</span><span class="kw-zh">代理人之年（2026 主題）</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>Amon 說，AI 代理人代表了 AI 的「下一個進化」——從被動的工具（Tool）變成主動的工作者（Worker）。這改變了科技公司競爭的方向。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🏢</div>
+        <div class="card-title-wrap">
+          <div class="card-title">高通（Qualcomm）是什麼公司？</div>
+          <div class="card-subtitle">懂牠的角色才能理解這場演講的意義</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>高通（Qualcomm）是一家美國晶片（Chip）公司。你手機裡可能就有他們的「驍龍（Snapdragon）」晶片——負責讓手機跑得快、省電、能打電話上網。</p>
+        <p>比喻：台積電（TSMC）是<strong>製造晶片的工廠（Foundry）</strong>；高通是<strong>設計晶片的公司（Fabless）</strong>，再請台積電幫忙做出來。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>OPPO、三星（Samsung）的 Android 手機裡，很多都有高通驍龍晶片。蘋果（Apple）iPhone 早年也用高通的數據機晶片（Modem，負責 4G/5G 訊號）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Qualcomm</span><span class="kw-zh">高通（美國半導體公司）</span></span>
+          <span class="keyword"><span class="kw-en">Snapdragon</span><span class="kw-zh">驍龍（高通旗艦晶片品牌）</span></span>
+          <span class="keyword"><span class="kw-en">Fabless</span><span class="kw-zh">無晶圓廠（只設計不製造）</span></span>
+          <span class="keyword"><span class="kw-en">TSMC / 台積電</span><span class="kw-zh">台灣積體電路製造公司</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>這次演講代表高通從「手機晶片公司（Mobile Chip Company）」轉型成「AI 全平台公司（AI Platform Company）」，野心很大。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">💻</div>
+        <div class="card-title-wrap">
+          <div class="card-title">AI PC 是什麼？</div>
+          <div class="card-subtitle">Snapdragon X2 Elite / Snapdragon C 系列</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>AI PC 就是「有 AI 加速晶片（AI Accelerator Chip）」的電腦。電腦裡有個叫 <strong>NPU（神經網路處理器 Neural Processing Unit）</strong>的零件，專門負責快速執行 AI 功能，不用傳到雲端，在你電腦裡就能跑 AI。</p>
+        <p>這次高通推出兩款晶片：<strong>Snapdragon X2 Elite</strong>（高階旗艦，效能更強）和 <strong>Snapdragon C</strong>（入門版 Budget，讓 $300 美元便宜筆電也能有 AI）。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>用傳統電腦叫 AI 生成圖片，要傳到 Adobe 的伺服器（Server）跑，再傳回來。用 AI PC 就可以直接在電腦裡跑，快很多、不用網路也能用——這叫「離線推理 Offline Inference」。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">AI PC</span><span class="kw-zh">AI 個人電腦</span></span>
+          <span class="keyword"><span class="kw-en">NPU (Neural Processing Unit)</span><span class="kw-zh">神經網路處理器</span></span>
+          <span class="keyword"><span class="kw-en">Copilot+ PC</span><span class="kw-zh">微軟認證 AI PC 規格</span></span>
+          <span class="keyword"><span class="kw-en">On-device AI</span><span class="kw-zh">裝置端 AI（不需上雲）</span></span>
+          <span class="keyword"><span class="kw-en">Snapdragon X2 Elite</span><span class="kw-zh">高通旗艦 AI PC 晶片</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>Microsoft（微軟）的 Copilot+ PC 功能（如 AI 自動摘要 AI Summary）需要這種晶片才能流暢運作。未來買電腦時 TOPS 算力這個規格會越來越重要。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MID -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-mid">中等</span><div class="tier-title">多了解一點會更懂這場演講</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">⚡</div>
+        <div class="card-title-wrap">
+          <div class="card-title">雲端運算 <span class="en-inline">Cloud Computing</span> vs. 邊緣運算 <span class="en-inline">Edge Computing</span></div>
+          <div class="card-subtitle">高通最核心的商業邏輯</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>雲端運算（Cloud Computing）</strong>：你的問題傳到遠方的超大電腦（伺服器 Server），跑完再傳回來。優點是算力強，缺點是要網路、有延遲（Latency）、費用可能很高。</p>
+        <p><strong>邊緣運算（Edge Computing）</strong>：AI 就在你的手機或電腦裡跑，不用傳到雲端。優點是快、不需要網路、更隱私（Privacy），缺點是裝置算力有限。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>問 ChatGPT 問題 = 雲端（你的問題飛到美國 OpenAI 的伺服器）。Apple Siri 辨識「嘿 Siri」= 邊緣（直接在你手機裡判斷，不傳出去）。</p>
+        </div>
+        <p>高通的策略是讓兩者「混合使用（Hybrid）」：簡單任務在裝置跑，複雜任務才送雲端，這樣可以省下 30~60% 的費用（演講中有 Demo 展示）。</p>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Cloud Computing</span><span class="kw-zh">雲端運算</span></span>
+          <span class="keyword"><span class="kw-en">Edge Computing</span><span class="kw-zh">邊緣運算</span></span>
+          <span class="keyword"><span class="kw-en">Hybrid Inference</span><span class="kw-zh">混合式推理（裝置+雲端）</span></span>
+          <span class="keyword"><span class="kw-en">Latency</span><span class="kw-zh">延遲（資料傳輸時間差）</span></span>
+          <span class="keyword"><span class="kw-en">Privacy</span><span class="kw-zh">資料隱私</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>Amon 說 AI 代理人使用量到 2030 年會爆增 40 倍（40x token growth），如果全靠雲端會貴到不划算，所以邊緣運算的角色會越來越重要，高通剛好在這裡有優勢。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🏗️</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Dragonfly — 高通進軍資料中心 <span class="en-inline">Data Center</span></div>
+          <div class="card-subtitle">這場演講最大的新聞</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>資料中心（Data Center）</strong>就是裝了幾千幾萬台電腦的大型機房，全球的 AI 服務（ChatGPT、Google Gemini、Siri）都靠它運算。目前主宰這個市場的是 <strong>NVIDIA（輝達）</strong>，牠的 GPU（圖形處理器）是 AI 訓練的主力。</p>
+        <p>高通宣布全新品牌 <strong>Dragonfly</strong>，要做資料中心的 AI 推理晶片（AI Inference Chip），直接跟 NVIDIA 搶生意。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>AI 訓練（Training）= 考試前的讀書（需要大量算力，NVIDIA 現在稱霸）。AI 推理（Inference）= 考試當天作答（需要快速低延遲，是 Dragonfly 瞄準的市場）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Dragonfly</span><span class="kw-zh">高通資料中心晶片品牌</span></span>
+          <span class="keyword"><span class="kw-en">Data Center</span><span class="kw-zh">資料中心</span></span>
+          <span class="keyword"><span class="kw-en">AI Inference</span><span class="kw-zh">AI 推理（執行已訓練的模型）</span></span>
+          <span class="keyword"><span class="kw-en">AI Accelerator</span><span class="kw-zh">AI 加速器晶片</span></span>
+          <span class="keyword"><span class="kw-en">NVIDIA (輝達)</span><span class="kw-zh">最大競爭對手</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>高通股票同一天跌了將近 9%，因為同天 NVIDIA 也宣布 AI PC 晶片合作計畫，形成直接競爭（Head-to-Head Competition）。資料中心細節要等 6/24 投資者日（Investor Day）才揭曉。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔢</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Token（代幣 / 文字單元）— AI 的「計費單位」</div>
+          <div class="card-subtitle">Amon 說它是「AI 的貨幣 Currency of AI」</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>Token</strong> 是 AI 語言模型（Language Model）處理文字的最小單位，大約 1 個英文單字 = 1~2 個 token，中文 1 個字大概 1~2 個 token。你每次問 AI 問題、AI 每次回答，都在消耗 token。</p>
+        <p>用 API（應用程式介面）付費呼叫 ChatGPT 就是按 token 計費。Amon 說 AI 代理人（AI Agent）的任務更複雜、對話更長，會讓全球 token 使用量到 2030 年爆增 <strong>40 倍</strong>。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>問 AI「今天幾號？」= 幾個 token，像坐公車投一枚硬幣。叫 AI 代理人「幫我規劃一週旅遊行程並訂好所有票」= 可能要幾千個 token，像搭計程車跑長途。代理人任務多 = token 消耗爆炸性成長。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Token</span><span class="kw-zh">文字單元 / AI 計費單位</span></span>
+          <span class="keyword"><span class="kw-en">Token Consumption</span><span class="kw-zh">Token 消耗量</span></span>
+          <span class="keyword"><span class="kw-en">API (Application Programming Interface)</span><span class="kw-zh">應用程式介面</span></span>
+          <span class="keyword"><span class="kw-en">40x Token Growth by 2030</span><span class="kw-zh">2030 年前 40 倍 Token 成長預測</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>Token 消耗的爆炸性成長是整場演講邊緣運算（Edge Computing）策略的核心理由——全丟雲端太貴，必須在裝置端消化一部分。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD in BASIC -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-hard">進一步</span><div class="tier-title">想多瞭解一點的話可以繼續讀</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🦾</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Dragonwing IQ10 機器人平台 <span class="en-inline">Robotics Reference Design</span></div>
+          <div class="card-subtitle">人形機器人 Humanoid Robot 的「工具包」</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>蓋一台能自己行走、感知、決策的機器人，以前要同時搞定好幾個不同的晶片和軟體，像拼圖一樣很麻煩。高通的 <strong>Dragonwing IQ10</strong> 是一個「一盒打包」的機器人開發平台（Reference Design），有 700 TOPS 的 AI 算力（每秒 7000 億次運算）、18 顆 CPU 核心，還附帶軟體開發工具（SDK），讓工程師不用從零開始。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>就像 Arduino 是電子新手的「入門工具組」，Dragonwing IQ10 就是機器人公司的「AI 大腦工具組 Robotics AI Brain Kit」。拿到就能快速開始做，不用自己湊零件。預計 2026 年 9 月全球出貨。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Dragonwing IQ10</span><span class="kw-zh">高通機器人參考設計平台</span></span>
+          <span class="keyword"><span class="kw-en">Humanoid Robot</span><span class="kw-zh">人形機器人</span></span>
+          <span class="keyword"><span class="kw-en">Reference Design (RRD)</span><span class="kw-zh">參考設計（開發模板）</span></span>
+          <span class="keyword"><span class="kw-en">700 TOPS</span><span class="kw-zh">每秒 7000 億次 AI 運算</span></span>
+          <span class="keyword"><span class="kw-en">SDK (Software Development Kit)</span><span class="kw-zh">軟體開發套件</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>Tesla Optimus、Figure AI 等人形機器人的爆紅讓整個產業急需「AI 大腦晶片（AI Brain Chip）」，高通這個平台是搶進這個市場的第一步。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🌐</div>
+        <div class="card-title-wrap">
+          <div class="card-title">「運算連續體」策略 <span class="en-inline">Computing Continuum</span></div>
+          <div class="card-subtitle">高通的大布局 — 從耳機到資料中心全包</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>高通想要從最小的設備到最大的機房，全部都插一腳：耳機（Earbuds）→手機（Smartphone）→電腦（PC）→汽車（Automotive）→工廠機器人（Industrial Robot）→資料中心（Data Center），每一個環節都用高通的晶片。這個策略叫 <strong>Computing Continuum（運算連續體）</strong>。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>早上你戴耳機問 AI 天氣，耳機晶片回答。下午在咖啡廳叫 AI 幫你分析財報，電腦晶片處理。晚上複雜的 3D 渲染任務自動送到雲端伺服器跑。整個過程都在高通的平台上無縫切換（Seamless Switching）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Computing Continuum</span><span class="kw-zh">運算連續體（全裝置覆蓋策略）</span></span>
+          <span class="keyword"><span class="kw-en">Dynamic Workload Allocation</span><span class="kw-zh">動態工作負載分配</span></span>
+          <span class="keyword"><span class="kw-en">Ecosystem</span><span class="kw-zh">生態系（軟硬體整合平台）</span></span>
+          <span class="keyword"><span class="kw-en">Seamless Switching</span><span class="kw-zh">無縫切換</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>這是高通對抗 NVIDIA（輝達）的策略核心——NVIDIA 強在資料中心，但高通要從端點設備（Endpoint Device）建立生態圈，形成 NVIDIA 難以複製的優勢。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🇹🇼</div>
+        <div class="card-title-wrap">
+          <div class="card-title">高通與台灣供應鏈 <span class="en-inline">Taiwan Supply Chain</span> 的關係</div>
+          <div class="card-subtitle">Amon 為什麼特別感謝台積電 TSMC？</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p>高通<strong>設計晶片（Chip Design）</strong>，但不自己生產。他們把設計圖交給台積電（TSMC，Taiwan Semiconductor Manufacturing Company）幫他們製造，這種模式叫 <strong>Fabless（無晶圓廠）</strong>。Amon 開場就致謝台灣，背板上顯示超過 60 家台灣夥伴，包括台積電、聯電（UMC）、日月光（ASE）等 21 家半導體公司。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>Nike 設計球鞋，但交給工廠生產。高通設計晶片，但交給台積電生產（Manufacture）。台積電如果停止合作，高通的新晶片就做不出來。所以 Amon 說台積電是「非常重要的夥伴（Incredibly Important Partner）」。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">TSMC (台積電)</span><span class="kw-zh">台灣積體電路製造公司</span></span>
+          <span class="keyword"><span class="kw-en">Supply Chain</span><span class="kw-zh">供應鏈</span></span>
+          <span class="keyword"><span class="kw-en">Semiconductor</span><span class="kw-zh">半導體</span></span>
+          <span class="keyword"><span class="kw-en">Fabless Model</span><span class="kw-zh">無晶圓廠商業模式</span></span>
+          <span class="keyword"><span class="kw-en">Foundry</span><span class="kw-zh">代工廠（純製造，不設計）</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>台灣在全球 AI 供應鏈（AI Supply Chain）居於核心地位，這也是 Computex 成為全球科技大廠 CEO 搶著來台北開演講的原因。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tab-basic -->
+
+
+<!-- ══════════════════════════════════════════
+     ADVANCED TAB
+══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-advanced">
+  <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">🔥 有基礎科技知識或是對 AI 有興趣的人看這裡，更深入理解高通的技術策略。</p>
+
+  <!-- EASY in ADV -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-easy">進階基礎</span><div class="tier-title">AI 架構與硬體的基礎概念</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🧩</div>
+        <div class="card-title-wrap">
+          <div class="card-title">CPU / GPU / NPU 三者的差異</div>
+          <div class="card-subtitle">高通 Snapdragon 晶片裡的三個「大腦」</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>CPU（中央處理器 Central Processing Unit）</strong>：通才，什麼都能做，適合需要邏輯判斷的複雜工作，核心數少但每顆很聰明。你電腦日常運作都靠它。</p>
+        <p><strong>GPU（圖形處理器 Graphics Processing Unit）</strong>：專門做「大量平行運算（Parallel Computing）」，幾千個核心同時算，最初是拿來跑遊戲畫面，現在是 AI 訓練的主力（NVIDIA 就是靠這個稱霸）。</p>
+        <p><strong>NPU（神經網路處理器 Neural Processing Unit）</strong>：專門為 AI 推理（Inference）設計，功耗更低、針對矩陣乘法（Matrix Multiplication）高度優化，適合在手機、筆電等省電場合跑 AI。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>CPU = 大學教授（通才、一次處理一個複雜問題）。GPU = 一千個工讀生（同時做很多簡單的重複工作）。NPU = AI 專門老師（只教 AI 課，效率超高但只會這個）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">CPU (Central Processing Unit)</span><span class="kw-zh">中央處理器</span></span>
+          <span class="keyword"><span class="kw-en">GPU (Graphics Processing Unit)</span><span class="kw-zh">圖形處理器</span></span>
+          <span class="keyword"><span class="kw-en">NPU (Neural Processing Unit)</span><span class="kw-zh">神經網路處理器</span></span>
+          <span class="keyword"><span class="kw-en">Parallel Computing</span><span class="kw-zh">平行運算</span></span>
+          <span class="keyword"><span class="kw-en">Matrix Multiplication</span><span class="kw-zh">矩陣乘法（AI 核心運算）</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">演講連結</div>
+          <p>高通的 Snapdragon 晶片同時有這三個處理器，Amon 強調 CPU+GPU+NPU 的整合是 AI 代理人需要的「新架構（New Architecture）」。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔄</div>
+        <div class="card-title-wrap">
+          <div class="card-title">生成式 AI <span class="en-inline">Generative AI</span> vs 代理式 AI <span class="en-inline">Agentic AI</span></div>
+          <div class="card-subtitle">整場演講的核心論點</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>生成式 AI（Generative AI）</strong>：你給它一個提示（Prompt），它生成回應（Response）。一問一答，被動（Reactive）。例：「幫我寫一首詩」→ AI 寫完，等你下一個問題。</p>
+        <p><strong>代理式 AI（Agentic AI）</strong>：你給它一個目標（Goal），它自己拆解成子任務（Sub-task）、呼叫工具（Tool Use）、執行步驟、自我修正（Self-correction），一步一步達成目標。主動（Proactive）、持續運作、有「記憶（Memory / Context）」。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>生成式 AI = 你問：「怎麼訂機票？」AI 答：「去官網，點選日期...」。代理式 AI = 你說：「幫我訂下週去東京的機票，不超過 15,000 元」→ AI 自己打開瀏覽器、比價、選好、問你確認→ 完成。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Generative AI</span><span class="kw-zh">生成式人工智慧</span></span>
+          <span class="keyword"><span class="kw-en">Agentic AI</span><span class="kw-zh">代理式人工智慧</span></span>
+          <span class="keyword"><span class="kw-en">Prompt</span><span class="kw-zh">提示詞（給 AI 的指令）</span></span>
+          <span class="keyword"><span class="kw-en">Tool Use</span><span class="kw-zh">工具呼叫（Agent 操作外部工具）</span></span>
+          <span class="keyword"><span class="kw-en">Context / Memory</span><span class="kw-zh">上下文 / 記憶（持續對話記憶）</span></span>
+          <span class="keyword"><span class="kw-en">Self-correction</span><span class="kw-zh">自我修正（AI 自動檢查錯誤）</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">硬體需求差異</div>
+          <p>代理式 AI 需要持續在背景運行（Background Running）、有長期記憶，所以對硬體的低功耗（Low Power）和持久性要求更高，這正是手機/PC 晶片需要升級的原因。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">📡</div>
+        <div class="card-title-wrap">
+          <div class="card-title">TOPS 是什麼單位？700 TOPS 有多強？</div>
+          <div class="card-subtitle">機器人平台 IQ10 的核心算力規格</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">白話解釋</div>
+        <p><strong>TOPS（Tera Operations Per Second）</strong>= 每秒執行多少兆次（1兆 = 10¹²）AI 運算。這是衡量 NPU（神經網路處理器）算力的主流單位。數字越大，AI 任務跑越快、可以跑越大的模型。</p>
+        <p>微軟 Copilot+ PC 認證最低需要 <strong>40 TOPS</strong>。Dragonwing IQ10 有 <strong>700 TOPS</strong>，是入門門檻的 17 倍以上。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>可以把 TOPS 想成「廚師的切菜速度」。40 TOPS 是一般廚師，能應付家常菜（Copilot+ PC 功能）。700 TOPS 是五星大廚，可以同時服務整個宴會廳。機器人要同時處理視覺（Vision）、動作（Motion）、語音（Speech），需要這樣的算力。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">TOPS (Tera Operations Per Second)</span><span class="kw-zh">每秒兆次運算（AI 算力單位）</span></span>
+          <span class="keyword"><span class="kw-en">NPU Performance</span><span class="kw-zh">神經網路處理器效能</span></span>
+          <span class="keyword"><span class="kw-en">40 TOPS</span><span class="kw-zh">Copilot+ PC 認證門檻</span></span>
+          <span class="keyword"><span class="kw-en">700 TOPS</span><span class="kw-zh">Dragonwing IQ10 機器人算力</span></span>
+          <span class="keyword"><span class="kw-en">Benchmark</span><span class="kw-zh">效能基準測試</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MID in ADV -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-mid">進階中等</span><div class="tier-title">AI 部署與商業模式</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">💰</div>
+        <div class="card-title-wrap">
+          <div class="card-title">混合式 AI 推理 <span class="en-inline">Hybrid AI Inference</span> 如何省 60% 成本？</div>
+          <div class="card-subtitle">Amon 在演講中 Demo 的核心技術</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>純雲端推理（Cloud-only Inference）的問題：每一次 AI 回應都要把大量資料（對話歷史、上下文 Context、用戶設定）傳到伺服器，不只慢，每次傳輸都消耗大量 token，費用很高。</p>
+        <p>高通的解法：<strong>混合式編排器（Hybrid Orchestrator）</strong>。系統自動判斷每個任務的複雜度（Task Complexity），簡單的推理任務（如摘要、關鍵字提取）在裝置上的 NPU 跑；複雜的任務（如多步驟推理、大型語言模型 LLM）才送雲端。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>辦公室的事可以自己決定的，不要每件事都問老闆（= 雲端 Cloud）。只有大決策才上報。這樣老闆時間省了、員工效率提升，整體成本也降低。高通 Demo 顯示可省 30%~60% 的 Token 消耗、成本降低 4 倍。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Hybrid Inference</span><span class="kw-zh">混合式推理（裝置+雲端）</span></span>
+          <span class="keyword"><span class="kw-en">Hybrid Orchestrator</span><span class="kw-zh">混合式任務調度器</span></span>
+          <span class="keyword"><span class="kw-en">Task Routing</span><span class="kw-zh">任務路由（決定去本地或雲端）</span></span>
+          <span class="keyword"><span class="kw-en">Cost Reduction 4x</span><span class="kw-zh">成本降低 4 倍</span></span>
+          <span class="keyword"><span class="kw-en">LLM (Large Language Model)</span><span class="kw-zh">大型語言模型</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">技術重點</div>
+          <p>這個「自動分流（Auto-routing）」能力需要裝置端（Device Side）跟雲端平台有統一的 API 和任務協議（Protocol），這也是高通為什麼要做完整生態系（Ecosystem）的原因。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🏛️</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Fabless 商業模式 vs 整合元件製造商 <span class="en-inline">IDM</span></div>
+          <div class="card-subtitle">高通、NVIDIA 為什麼不自己蓋工廠？</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p><strong>Fabless（無晶圓廠）</strong>：只做設計，製造全部外包（Outsource）給台積電（TSMC）等代工廠（Foundry）。高通、NVIDIA（輝達）、Apple（蘋果，自研晶片）都是這類。優點：資本支出（CapEx）低、可快速轉換製程節點（Process Node）。</p>
+        <p><strong>IDM（整合元件製造商 Integrated Device Manufacturer）</strong>：自己設計、自己製造。例：Intel（英特爾）、三星（Samsung）。優點：製程工藝（Process Technology）自己控制；缺點：工廠投資極大、靈活性低。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>Fabless = 食譜設計師，把菜單交給餐廳（台積電）煮。IDM = 自己有廚房、自己設計菜單也自己煮，但建廚房超貴。高通選 Fabless，所以才需要台積電，Amon 才要大力感謝台灣。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Fabless</span><span class="kw-zh">無晶圓廠（只設計，不製造）</span></span>
+          <span class="keyword"><span class="kw-en">IDM (Integrated Device Manufacturer)</span><span class="kw-zh">整合元件製造商</span></span>
+          <span class="keyword"><span class="kw-en">Pure-Play Foundry</span><span class="kw-zh">純代工廠（如台積電、聯電）</span></span>
+          <span class="keyword"><span class="kw-en">Process Node</span><span class="kw-zh">製程節點（如 3nm、5nm）</span></span>
+          <span class="keyword"><span class="kw-en">CapEx (Capital Expenditure)</span><span class="kw-zh">資本支出</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔮</div>
+        <div class="card-title-wrap">
+          <div class="card-title">AI 推理 <span class="en-inline">Inference</span> vs AI 訓練 <span class="en-inline">Training</span></div>
+          <div class="card-subtitle">Dragonfly 切入的市場是哪一塊？</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p><strong>AI 訓練（Training）</strong>：讓 AI 學習大量資料（Data）、調整模型參數（Parameters / Weights）的過程。需要極大算力（大量 GPU），持續數週至數月。目前 NVIDIA H100 GPU 是主力，一張要幾十萬美元。</p>
+        <p><strong>AI 推理（Inference）</strong>：訓練好的模型執行任務（回答問題、生成內容）的過程。需要低延遲（Low Latency）、高效率（High Efficiency）、省電（Low Power），特別是邊緣場景。市場規模在 AI 應用普及後快速擴張。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>訓練（Training）= 一個人花三年讀大學、考證照（耗費大量時間資源）。推理（Inference）= 畢業後每天上班工作（需要穩定、持續、低能耗）。高通進入的是「每天上班」這個更龐大的市場。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">AI Training</span><span class="kw-zh">AI 訓練（調整模型參數）</span></span>
+          <span class="keyword"><span class="kw-en">AI Inference</span><span class="kw-zh">AI 推理（執行已訓練的模型）</span></span>
+          <span class="keyword"><span class="kw-en">Model Weights / Parameters</span><span class="kw-zh">模型參數（AI 的「知識」）</span></span>
+          <span class="keyword"><span class="kw-en">Performance per Watt</span><span class="kw-zh">每瓦效能（省電效率指標）</span></span>
+          <span class="keyword"><span class="kw-en">NVIDIA H100</span><span class="kw-zh">目前主流 AI 訓練 GPU</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">為什麼重要？</div>
+          <p>AI 推理市場隨著 AI 應用普及快速增長，而且對「功耗效率（Performance per Watt）」要求極高，正好是高通從行動裝置帶來的最大強項。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD in ADV -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-hard">進階深入</span><div class="tier-title">行業競爭格局</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">⚔️</div>
+        <div class="card-title-wrap">
+          <div class="card-title">高通 Qualcomm vs NVIDIA（輝達）— AI PC 的正面對決</div>
+          <div class="card-subtitle">同一天公告、同一市場、兩家廝殺</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">競爭分析</div>
+        <p>就在 6/1 高通演講同一天，NVIDIA（輝達）也宣布了 AI PC 晶片合作計畫，瞄準同樣的 Windows AI PC 市場。市場解讀此舉為對高通的直接挑戰（Direct Challenge），導致高通股票（QCOM）當天下跌近 <strong>9%</strong>。</p>
+        <p><strong>高通的優勢（Qualcomm's Advantage）</strong>：ARM 架構（ARM Architecture）的高效能功耗比、已在 Windows 生態站穩（Copilot+ PC）、擁有跨手機-電腦-汽車的完整生態。</p>
+        <p><strong>NVIDIA 的威脅（NVIDIA's Threat）</strong>：軟體生態系 CUDA 深根蒂固、開發者（Developer）熟悉度極高、資金和品牌都更強勢。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>就像手搖飲市場有一點點和50嵐同時競爭一樣，AI PC 市場也會有多個晶片廠競爭（Market Competition）。消費者最後選誰，取決於效能（Performance）、電池（Battery Life）、軟體支援（Software Support）和價格（Price）的組合。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">QCOM (Qualcomm Stock)</span><span class="kw-zh">高通股票代碼</span></span>
+          <span class="keyword"><span class="kw-en">CUDA</span><span class="kw-zh">NVIDIA 的 GPU 平行運算平台</span></span>
+          <span class="keyword"><span class="kw-en">Market Competition</span><span class="kw-zh">市場競爭</span></span>
+          <span class="keyword"><span class="kw-en">ARM Architecture</span><span class="kw-zh">ARM 指令集架構</span></span>
+          <span class="keyword"><span class="kw-en">Windows on ARM</span><span class="kw-zh">ARM 版 Windows</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">投資觀察</div>
+          <p>高通股價跌 9% 反映市場擔憂，但也代表市場開始認真看待 AI PC 這塊大餅的競爭（Competition）。長期而言，能夠整合「端到端（End-to-End）」AI 生態的公司才能勝出。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🌍</div>
+        <div class="card-title-wrap">
+          <div class="card-title">ARM 架構崛起 <span class="en-inline">ARM Architecture</span> vs x86 傳統霸主</div>
+          <div class="card-subtitle">為什麼 Snapdragon 的筆電省電那麼多？</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p><strong>x86</strong>：Intel（英特爾）和 AMD 的傳統 PC 晶片指令集架構（ISA，Instruction Set Architecture），指令集複雜（CISC）、歷史悠久，幾乎所有 Windows 軟體都針對它優化，但功耗較高。</p>
+        <p><strong>ARM（精簡指令集架構 RISC）</strong>：最初為行動裝置設計，效能/瓦特比（Performance per Watt）遠高於 x86。Apple M 系列晶片（Mac 用）和高通 Snapdragon（Windows 筆電用）都是 ARM 架構。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>x86 像一台大排量跑車，性能強但油耗（Power Consumption）高。ARM 像油電混合車，也很快但油耗低很多。Apple M4 MacBook 電池可以撐 22 小時，高通 Snapdragon 筆電也宣稱續航大幅超越 Intel 機型。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">ARM (Advanced RISC Machine)</span><span class="kw-zh">精簡指令集架構</span></span>
+          <span class="keyword"><span class="kw-en">x86</span><span class="kw-zh">Intel/AMD 的傳統 PC 架構</span></span>
+          <span class="keyword"><span class="kw-en">ISA (Instruction Set Architecture)</span><span class="kw-zh">指令集架構</span></span>
+          <span class="keyword"><span class="kw-en">Performance per Watt</span><span class="kw-zh">每瓦效能（省電效率）</span></span>
+          <span class="keyword"><span class="kw-en">CISC vs RISC</span><span class="kw-zh">複雜 vs 精簡指令集</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">演講連結</div>
+          <p>Amon 說「Windows 生態的效能領導地位已經回歸（Performance Leadership Restored）」，指的就是 ARM 架構的 Snapdragon 在效能和功耗上超越傳統 Intel x86 筆電這件事。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔗</div>
+        <div class="card-title-wrap">
+          <div class="card-title">超大規模雲服務商 <span class="en-inline">Hyperscaler</span> 是誰？</div>
+          <div class="card-subtitle">Dragonfly 的目標客戶</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>Hyperscaler（超大規模雲服務商）是指擁有超大規模資料中心（Data Center）、對外提供雲端服務（Cloud Service）的科技巨頭：<strong>AWS（Amazon Web Services）、Azure（Microsoft）、Google Cloud、Meta AI、阿里雲（Alibaba Cloud）</strong> 等。</p>
+        <p>他們每年採購大量晶片，是 Intel（英特爾）、NVIDIA（輝達）、AMD 的大客戶。高通宣稱 Dragonfly 是「與主要 hyperscaler 合作」共同開發，代表已有預購承諾或 PoC（概念驗證 Proof of Concept）合作。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 生活例子</div>
+          <p>你用 ChatGPT = 用 Microsoft Azure 的算力。你用 Google Gemini = 用 Google Cloud 的算力。這些超大規模雲商一旦改採高通 Dragonfly 的晶片，對 NVIDIA（輝達）的影響會非常大。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Hyperscaler</span><span class="kw-zh">超大規模雲服務商</span></span>
+          <span class="keyword"><span class="kw-en">AWS (Amazon Web Services)</span><span class="kw-zh">亞馬遜雲端服務</span></span>
+          <span class="keyword"><span class="kw-en">Azure (Microsoft)</span><span class="kw-zh">微軟雲端平台</span></span>
+          <span class="keyword"><span class="kw-en">PoC (Proof of Concept)</span><span class="kw-zh">概念驗證</span></span>
+          <span class="keyword"><span class="kw-en">Investor Day</span><span class="kw-zh">投資者日（6/24 紐約）</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">關鍵觀察</div>
+          <p>Dragonfly 的細節要 6/24 投資者日（Investor Day）才揭曉。市場現在最想知道的是：哪些 hyperscaler 已經跟高通簽約（Signed Contract）？規模多大？時程多快？</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tab-advanced -->
+
+
+<!-- ══════════════════════════════════════════
+     CS TAB
+══════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-cs">
+  <p style="color:var(--muted);font-size:13px;margin-bottom:28px;">💻 給資管、資工、電機等相關科系同學。這裡的內容跟你的課堂知識直接連結，也指向未來職涯方向。</p>
+
+  <!-- EASY in CS -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-easy">CS 基礎</span><div class="tier-title">連結你的課堂知識</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">⚙️</div>
+        <div class="card-title-wrap">
+          <div class="card-title">SoC（System on Chip）片上系統架構</div>
+          <div class="card-subtitle">Snapdragon 的底層設計哲學</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>傳統 PC：CPU、GPU、記憶體控制器（Memory Controller）、網路晶片各自是獨立的晶片，透過匯流排（Bus）連接，傳輸延遲（Latency）高。</p>
+        <p><strong>SoC（System on Chip，片上系統）</strong>：把 CPU、GPU、NPU、記憶體控制器、數據機（Modem）全部整合進單一晶片。好處是延遲極低（晶片內部傳輸速度遠快於外部匯流排）、功耗更低（省去跨晶片傳輸能耗）。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>就像把原本多個 microservice 整合成 monolith 再優化——在合適規模下，內部呼叫（In-process Call）的延遲遠低於網路呼叫（Network Call）。Snapdragon 的 CPU+NPU 共享高頻寬記憶體（LPDDR5x），AI 推理時不需要跨晶片傳資料。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">SoC (System on Chip)</span><span class="kw-zh">片上系統</span></span>
+          <span class="keyword"><span class="kw-en">Unified Memory Architecture</span><span class="kw-zh">統一記憶體架構</span></span>
+          <span class="keyword"><span class="kw-en">On-chip Interconnect</span><span class="kw-zh">晶片內部互連</span></span>
+          <span class="keyword"><span class="kw-en">Memory Bandwidth</span><span class="kw-zh">記憶體頻寬</span></span>
+          <span class="keyword"><span class="kw-en">Power Gating</span><span class="kw-zh">電源閘控（動態省電技術）</span></span>
+          <span class="keyword"><span class="kw-en">Bus (System Bus)</span><span class="kw-zh">系統匯流排</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">課堂連結</div>
+          <p>計算機組織（Computer Organization）、作業系統課程：記憶體階層（Cache Hierarchy）、匯流排架構（Bus Architecture）。SoC 的設計可以看成對傳統「北橋/南橋（Northbridge/Southbridge）」架構的極端整合優化。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🧠</div>
+        <div class="card-title-wrap">
+          <div class="card-title">LLM 推理的運算瓶頸：Memory Bandwidth（記憶體頻寬）</div>
+          <div class="card-subtitle">為什麼大語言模型推理的關鍵不是算力而是記憶體頻寬？</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>LLM（大型語言模型 Large Language Model）推理是 <strong>Memory Bandwidth Bound（記憶體頻寬瓶頸）</strong>問題，不是 Compute Bound（算力瓶頸）。每次生成一個 token，模型需要把幾十億的參數（Weights）從 DRAM 載入到計算單元，這個資料搬移速度（Data Movement Speed）才是瓶頸。</p>
+        <p>Snapdragon X2 Elite 採用 LPDDR5X 記憶體，理論頻寬達 135 GB/s，且 CPU/GPU/NPU 共享這塊記憶體（Unified Memory），不需要像離散 GPU（Discrete GPU）那樣跨 PCIe 傳資料。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>想像 CPU 是廚師（算力超強），記憶體是冰箱（存模型參數 Model Weights），但冰箱到廚房的走廊很窄（記憶體頻寬）。廚師再快，食材搬不過來也沒用。Unified Memory 就是把冰箱直接搬進廚房旁邊。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Memory Bandwidth Bound</span><span class="kw-zh">記憶體頻寬瓶頸</span></span>
+          <span class="keyword"><span class="kw-en">LPDDR5X</span><span class="kw-zh">低功耗雙倍速率記憶體第五代</span></span>
+          <span class="keyword"><span class="kw-en">Unified Memory</span><span class="kw-zh">統一記憶體（CPU/GPU/NPU 共享）</span></span>
+          <span class="keyword"><span class="kw-en">Roofline Model</span><span class="kw-zh">屋頂線效能分析模型</span></span>
+          <span class="keyword"><span class="kw-en">Arithmetic Intensity</span><span class="kw-zh">算術強度（運算量/記憶體傳輸量比）</span></span>
+          <span class="keyword"><span class="kw-en">Discrete GPU</span><span class="kw-zh">獨立顯示卡</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🤝</div>
+        <div class="card-title-wrap">
+          <div class="card-title">ROS2 與機器人軟體生態系 <span class="en-inline">Robot Operating System 2</span></div>
+          <div class="card-subtitle">Dragonwing IQ10 的軟體層</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p><strong>ROS2（Robot Operating System 2，機器人作業系統第二代）</strong>：機器人界的「Linux」，提供節點通訊（Node Communication）、感測器驅動（Sensor Driver）、動作規劃（Motion Planning）等基礎設施，是業界標準開源框架（Open Source Framework）。</p>
+        <p>Dragonwing IQ10 原生支援 ROS2，這代表工程師可以直接套用大量既有的 ROS2 套件（Package），不用從頭寫硬體驅動（Hardware Driver）。高通還提供 <strong>AI Hub</strong> 和雲端 Fleet Management，讓部署和管理機器人群組更容易。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>就像 Docker + Kubernetes 解決了應用部署問題，ROS2 + 高通 AI Hub 是要解決「機器人 AI 應用部署和管理」問題。Fleet Management = 管理幾百台機器人就像管理 K8s（Kubernetes）叢集（Cluster）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">ROS2 (Robot Operating System 2)</span><span class="kw-zh">機器人作業系統第二代</span></span>
+          <span class="keyword"><span class="kw-en">navigation2</span><span class="kw-zh">ROS2 自主導航套件</span></span>
+          <span class="keyword"><span class="kw-en">MoveIt2</span><span class="kw-zh">機械臂動作規劃框架</span></span>
+          <span class="keyword"><span class="kw-en">Fleet Management</span><span class="kw-zh">機器人群組管理</span></span>
+          <span class="keyword"><span class="kw-en">Edge AI Runtime</span><span class="kw-zh">邊緣端 AI 執行環境</span></span>
+          <span class="keyword"><span class="kw-en">Open Source Framework</span><span class="kw-zh">開源框架</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MID in CS -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-mid">CS 進階</span><div class="tier-title">系統設計與 AI 部署架構</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔀</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Hybrid AI Orchestration — 分散式 AI 任務調度 <span class="en-inline">Distributed Task Scheduling</span></div>
+          <div class="card-subtitle">高通 Demo 的核心技術架構</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>在分散式系統（Distributed System）中，任務調度（Task Scheduling）需要考慮：運算資源（Compute Resource）、延遲需求（Latency Requirement）、隱私要求（Privacy）、成本（Cost）。高通提出的 Hybrid Orchestrator 是一個 <strong>動態路由層（Dynamic Routing Layer）</strong>，位於應用層（Application Layer）和模型推理層（Inference Layer）之間。</p>
+        <p>邏輯類似 <strong>Load Balancer（負載均衡器）+ Circuit Breaker（熔斷器）</strong>的組合：根據任務複雜度（Task Complexity）、當前裝置算力、網路狀況，決定是在本地 NPU 推理、部分在邊緣（Edge）、或送往雲端（Cloud）。還可以 <strong>KV Cache Sharing（鍵值快取共享）</strong>來跨裝置和雲端減少重複運算。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>類比：微服務架構（Microservice Architecture）的 API Gateway + Service Mesh。Orchestrator 是 gateway，決定把 request 路由（Route）到哪個「推理後端（Inference Backend）」。KV Cache 共享則像 Redis 做的分散式 Session，讓不同後端都能存取同一份對話記憶體。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Speculative Decoding</span><span class="kw-zh">推測解碼（加速推理技術）</span></span>
+          <span class="keyword"><span class="kw-en">KV Cache (Key-Value Cache)</span><span class="kw-zh">鍵值快取（對話記憶體快取）</span></span>
+          <span class="keyword"><span class="kw-en">Token Streaming</span><span class="kw-zh">逐字串流輸出</span></span>
+          <span class="keyword"><span class="kw-en">Load Balancing</span><span class="kw-zh">負載均衡</span></span>
+          <span class="keyword"><span class="kw-en">Latency SLA</span><span class="kw-zh">延遲服務等級協議</span></span>
+          <span class="keyword"><span class="kw-en">Hybrid Orchestrator</span><span class="kw-zh">混合式任務調度器</span></span>
+          <span class="keyword"><span class="kw-en">Dynamic Routing Layer</span><span class="kw-zh">動態路由層</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔧</div>
+        <div class="card-title-wrap">
+          <div class="card-title">NPU 程式設計模型：ONNX、QNN 與模型量化 <span class="en-inline">Model Quantization</span></div>
+          <div class="card-subtitle">怎麼讓你的 AI 模型在 Snapdragon 上跑</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>訓練好的 AI 模型（PyTorch / TensorFlow 格式）要跑在 NPU 上，需要幾個步驟：</p>
+        <p><strong>1. 匯出 ONNX（Open Neural Network Exchange，開放神經網路交換格式）</strong>：把模型轉成硬體無關的通用格式。</p>
+        <p><strong>2. 量化（Quantization）</strong>：把模型參數從 float32 壓縮成 int8 或 int4，大幅降低記憶體佔用和計算量（通常效能損失小於 1-3%）。</p>
+        <p><strong>3. 編譯成 QNN（Qualcomm Neural Network SDK）</strong>：使用高通神經網路開發套件把 ONNX 模型編譯成針對 Snapdragon NPU 優化的 QNN 格式，充分利用硬體加速器（Hardware Accelerator）。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>就像寫 Java 程式（PyTorch）→ 編譯成 .class bytecode（ONNX）→ JVM（QNN Runtime）在特定硬體上執行。量化（Quantization）就像從 64-bit double 降到 8-bit int，精度稍降但速度爆增。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">ONNX (Open Neural Network Exchange)</span><span class="kw-zh">開放神經網路交換格式</span></span>
+          <span class="keyword"><span class="kw-en">INT8 Quantization</span><span class="kw-zh">8 位元整數量化</span></span>
+          <span class="keyword"><span class="kw-en">QNN SDK (Qualcomm Neural Network SDK)</span><span class="kw-zh">高通神經網路開發套件</span></span>
+          <span class="keyword"><span class="kw-en">TensorRT (NVIDIA 比較)</span><span class="kw-zh">NVIDIA 推理加速框架</span></span>
+          <span class="keyword"><span class="kw-en">Post-Training Quantization (PTQ)</span><span class="kw-zh">訓練後量化</span></span>
+          <span class="keyword"><span class="kw-en">Hardware Accelerator</span><span class="kw-zh">硬體加速器</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">📐</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Oryon CPU 架構：Big-Medium-Little 三層核心設計 <span class="en-inline">Heterogeneous Core</span></div>
+          <div class="card-subtitle">Snapdragon X2 Elite 的 CPU 核心配置</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>Oryon 是高通自研的 ARM 架構 CPU 微架構（Microarchitecture）。X2 Elite 採用 <strong>Big-Medium-Little（大中小核）</strong> 非均等核心配置（Heterogeneous Core Configuration），類似 ARM 的 big.LITTLE 但分三層：</p>
+        <p>🔴 <strong>Prime Cores（大核心）</strong>：高頻率、高效能，處理爆發性工作負載（Burst Workload）。🟡 <strong>Performance Cores（中核心）</strong>：平衡效能與功耗（Power Efficiency Balance）。🟢 <strong>Efficiency Cores（小核心）</strong>：極低功耗（功耗 &lt;2mW），處理背景任務，包括 AI 代理人的持續監聽（Background Listening）。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>OS 的 Scheduler（排程器）會根據任務優先度（Priority）和功耗目標（Power Budget）把 Thread 分配到不同層的核心。AI 代理人的「背景監聽」理想上跑在小核心上，突然需要處理時再喚醒大核心——這是 DVFS（Dynamic Voltage and Frequency Scaling，動態電壓頻率調節）的實際應用。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Heterogeneous Computing</span><span class="kw-zh">異質運算</span></span>
+          <span class="keyword"><span class="kw-en">DVFS (Dynamic Voltage and Frequency Scaling)</span><span class="kw-zh">動態電壓頻率調節</span></span>
+          <span class="keyword"><span class="kw-en">Thread Affinity</span><span class="kw-zh">執行緒核心親和性</span></span>
+          <span class="keyword"><span class="kw-en">ARM DynamIQ</span><span class="kw-zh">ARM 異質核心架構技術</span></span>
+          <span class="keyword"><span class="kw-en">IPC (Instructions Per Cycle)</span><span class="kw-zh">每周期指令數</span></span>
+          <span class="keyword"><span class="kw-en">Big-Medium-Little Core</span><span class="kw-zh">大中小核三層配置</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HARD in CS -->
+  <div class="tier-section">
+    <div class="tier-header"><span class="tier-badge badge-hard">CS 深入</span><div class="tier-title">職涯方向與前沿研究</div></div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🌐</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Digital Twin（數位孿生）與 Sensor Fusion（多感測器融合）</div>
+          <div class="card-subtitle">演講提到的城市級 AI 感知系統</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術解釋</div>
+        <p>Amon 提到 Qualcomm 的感測器整合（從耳機到工廠設備）可以建立城市規模的 <strong>Digital Twin（數位孿生）</strong>——即時將物理世界映射到數位空間（Digital Space），讓 AI 代理人可以操控虛擬世界來影響實體世界。</p>
+        <p>技術挑戰在於 <strong>Sensor Fusion（多感測器融合）</strong>：LIDAR（光達）、Camera（攝影機）、IMU（慣性測量單元）、WiFi/5G 定位數據需要時間同步（Time Synchronization）和座標系對齊（Coordinate Frame Alignment），且在資源受限裝置（Resource-constrained Device）上要即時完成。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>自駕車（Autonomous Vehicle）就是小型 Digital Twin 的應用：感測器融合建立周圍環境的 3D 地圖（3D Map），AI 在這個虛擬地圖上做路徑規劃（Path Planning），再輸出控制指令到實體車輛。擴展到城市規模需要 Federated Learning（聯邦學習）讓多個裝置協作更新共享模型而不集中傳輸原始數據（保護隱私）。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Digital Twin</span><span class="kw-zh">數位孿生（實體世界的數位映射）</span></span>
+          <span class="keyword"><span class="kw-en">Sensor Fusion</span><span class="kw-zh">多感測器融合</span></span>
+          <span class="keyword"><span class="kw-en">SLAM (Simultaneous Localization and Mapping)</span><span class="kw-zh">即時定位與地圖建構</span></span>
+          <span class="keyword"><span class="kw-en">Federated Learning</span><span class="kw-zh">聯邦學習（隱私保護分散式訓練）</span></span>
+          <span class="keyword"><span class="kw-en">Time-Series Synchronization</span><span class="kw-zh">時間序列同步</span></span>
+          <span class="keyword"><span class="kw-en">LIDAR (Light Detection and Ranging)</span><span class="kw-zh">光達（光學測距感測器）</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🔬</div>
+        <div class="card-title-wrap">
+          <div class="card-title">Dragonfly 推理晶片架構猜想：脈動陣列 <span class="en-inline">Systolic Array</span> vs 向量處理器 <span class="en-inline">Vector Processor</span></div>
+          <div class="card-subtitle">資料中心 AI 推理晶片的技術路線</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">技術分析</div>
+        <p>高通尚未公開 Dragonfly 的技術細節，但根據業界趨勢可以推測兩種主要架構路線：</p>
+        <p><strong>脈動陣列（Systolic Array）</strong>：Google TPU 的方式，矩陣乘法（GEMM, General Matrix Multiply）硬編碼到硬體，Transformer 架構推理極度高效，但靈活性（Flexibility）低。</p>
+        <p><strong>向量處理器（Vector Processor / VLIW）</strong>：更靈活，可以支援不同算子（Operator），犧牲部分效率換取通用性。高通在行動端的 NPU 歷史上傾向後者（Hexagon DSP 架構）。</p>
+        <div class="example-box">
+          <div class="ex-label">🌟 CS 例子</div>
+          <p>脈動陣列 = ASIC（Application-Specific IC，只做一件事但做到極致）。向量處理器 = FPGA（可程式化，有更大的適用範圍）。資料中心需要支援各種不同的模型架構，彈性很重要，但推理延遲 SLA 也很嚴格，是個工程取捨（Engineering Trade-off）問題。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">Systolic Array</span><span class="kw-zh">脈動陣列（矩陣乘法硬體加速）</span></span>
+          <span class="keyword"><span class="kw-en">GEMM (General Matrix Multiply)</span><span class="kw-zh">通用矩陣乘法</span></span>
+          <span class="keyword"><span class="kw-en">Hexagon DSP</span><span class="kw-zh">高通六邊形數位訊號處理器</span></span>
+          <span class="keyword"><span class="kw-en">Attention Mechanism Hardware</span><span class="kw-zh">注意力機制硬體加速</span></span>
+          <span class="keyword"><span class="kw-en">KV-Cache Management</span><span class="kw-zh">鍵值快取管理（LLM 推理優化）</span></span>
+          <span class="keyword"><span class="kw-en">VLIW (Very Long Instruction Word)</span><span class="kw-zh">超長指令字元架構</span></span>
+          <span class="keyword"><span class="kw-en">ASIC vs FPGA</span><span class="kw-zh">專用 vs 可程式化晶片</span></span>
+        </div>
+        <div class="matters-box">
+          <div class="m-label">研究方向</div>
+          <p>如果你對這個方向有興趣，可以研究：Google TPUv4 論文、NVIDIA H100 Tensor Core 設計、以及 MIT 的 Eyeriss 專案（Edge AI 加速器的學術研究）。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-card" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-icon">🎯</div>
+        <div class="card-title-wrap">
+          <div class="card-title">職涯規劃 Career Planning：這場演講開啟了哪些方向？</div>
+          <div class="card-subtitle">資工/資管學生的實際行動清單</div>
+        </div>
+        <div class="card-chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="card-section-title">熱門方向</div>
+        <p>🔴 <strong>On-device AI / Edge ML Engineer（裝置端 AI / 邊緣機器學習工程師）</strong>：讓 AI 模型在手機/嵌入式裝置跑起來。需要：PyTorch → ONNX → TFLite/QNN、模型量化（Quantization）、C++ 優化。高通（Qualcomm）、聯發科（MediaTek）、蘋果（Apple）都在招。</p>
+        <p>🟡 <strong>Robotics AI Engineer（機器人 AI 工程師）</strong>：結合 ROS2、電腦視覺（Computer Vision）、強化學習（Reinforcement Learning）設計自主機器人。需要：Python/C++、ROS2、SLAM、RL 基礎。Tesla、Figure AI、小米機器人部門都在搶人。</p>
+        <p>🟢 <strong>AI Infrastructure / MLOps Engineer（AI 基礎設施 / 機器學習維運工程師）</strong>：管理 AI 模型的訓練、部署（Deployment）、監控（Monitoring）流程。需要：Kubernetes、Ray、Docker、Prometheus。雲服務商（AWS、Azure、GCP）薪資極高。</p>
+        <p>🔵 <strong>Chip Design / Verification Engineer（晶片設計 / 驗證工程師）</strong>：幫高通（Qualcomm）、台積電（TSMC）、聯發科（MediaTek）設計下一代晶片。需要：數位邏輯（Digital Logic）、Verilog/VHDL、VLSI Design Flow。台灣就業市場需求穩定且薪資高。</p>
+        <div class="example-box">
+          <div class="ex-label">🎓 現在可以做的事</div>
+          <p>① 下載 Qualcomm AI Hub，練習把 Hugging Face 上的模型部署（Deploy）到手機模擬器。② 刷 LeetCode 的同時，試著了解 Transformer 架構（Transformer Architecture）的基礎數學——注意力機制（Attention Mechanism）= 矩陣乘法（Matrix Multiplication）。③ 研究 Snapdragon X2 Elite 的 Benchmarks，對照 TOPS 規格理解效能瓶頸（Performance Bottleneck）在哪。</p>
+        </div>
+        <div class="keyword-list">
+          <span class="keyword"><span class="kw-en">MLOps (ML Operations)</span><span class="kw-zh">機器學習維運</span></span>
+          <span class="keyword"><span class="kw-en">VLSI Design Flow</span><span class="kw-zh">超大型積體電路設計流程</span></span>
+          <span class="keyword"><span class="kw-en">Reinforcement Learning (RL)</span><span class="kw-zh">強化學習</span></span>
+          <span class="keyword"><span class="kw-en">Transformer Architecture</span><span class="kw-zh">Transformer 架構（LLM 基礎）</span></span>
+          <span class="keyword"><span class="kw-en">Attention Mechanism</span><span class="kw-zh">注意力機制</span></span>
+          <span class="keyword"><span class="kw-en">Hugging Face</span><span class="kw-zh">開源 AI 模型平台</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /tab-cs -->
+
+</div><!-- /main -->
+
+<footer>
+  整理自 Qualcomm Computex 2026 主題演講 · June 1, 2026 · Taipei Nangang<br>
+  資料來源：Business Standard、ServeTheHome、TradingKey、Pulse2、HotHardware
+</footer>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+      document.querySelectorAll('#tab-' + tabId + ' .concept-card').forEach((card, i) => {
+        card.style.animation = 'none';
+        card.offsetHeight;
+        card.style.animation = '';
+        card.style.animationDelay = (0.05 + i * 0.05) + 's';
+      });
+    });
+  });
+  function toggleCard(card) { card.classList.toggle('open'); }
+</script>
+</body>
+</html>
